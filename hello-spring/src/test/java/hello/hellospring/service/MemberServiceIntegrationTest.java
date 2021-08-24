@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,14 +24,6 @@ class MemberServiceIntegrationTest {
 
     @Autowired
     MemberRepository repository;
-
-
-    @BeforeEach
-    public void beforeEach() {
-        repository = new MemoryMemberRepository();
-        memberService = new MemberService(repository);
-    }
-
 
     @Test
     void 회원가입_테스트() {
