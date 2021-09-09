@@ -1,6 +1,8 @@
 package userorder.userorder.order;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import userorder.userorder.AppConfig;
 import userorder.userorder.Order.Order;
 import userorder.userorder.Order.OrderService;
 import userorder.userorder.Order.OrderServiceImpl;
@@ -8,8 +10,15 @@ import userorder.userorder.discount.FixDiscountPolicy;
 import userorder.userorder.member.*;
 
 public class OrderServiceTest {
-    MemberService memberService = new MemberServiceImpl(new MemoryMemberRepository());
-    OrderService orderService = new OrderServiceImpl(new MemoryMemberRepository(), new FixDiscountPolicy());
+    MemberService memberService;
+    OrderService orderService;
+
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        this.memberService = appConfig.memberService();
+        this.orderService = appConfig.orderService();
+    }
 
     @Test
     void createOrder() {
