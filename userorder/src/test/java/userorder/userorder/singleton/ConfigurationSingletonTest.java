@@ -6,6 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import userorder.userorder.AppConfig;
 import userorder.userorder.Order.OrderServiceImpl;
 import userorder.userorder.member.MemberRepository;
+import userorder.userorder.member.MemberService;
 import userorder.userorder.member.MemberServiceImpl;
 
 public class ConfigurationSingletonTest {
@@ -35,5 +36,17 @@ public class ConfigurationSingletonTest {
         AppConfig bean = ac.getBean(AppConfig.class);
 
         System.out.println("bean = " + bean.getClass());
+    }
+
+    @Test
+    void notConfigurationAnnotationTest() {
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        MemberService memberService1 = ac.getBean("memberService", MemberService.class);
+        MemberService memberService2 = ac.getBean("memberService", MemberService.class);
+
+        System.out.println("memberService1 : " + memberService1.getClass());
+        System.out.println("memberService2 : " + memberService2.getClass());
+
+        Assertions.assertThat(memberService1).isSameAs(memberService2);
     }
 }
