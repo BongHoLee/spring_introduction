@@ -1,7 +1,9 @@
 package userorder.userorder.Order;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import userorder.userorder.annotation.MainDiscountPolicy;
 import userorder.userorder.discount.DiscountPolicy;
 import userorder.userorder.member.Member;
 import userorder.userorder.member.MemberRepository;
@@ -13,9 +15,9 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy;
 
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy rateDiscountPolicy) {
         this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
+        this.discountPolicy = rateDiscountPolicy;
     }
 
     public MemberRepository getMemberRepository() {

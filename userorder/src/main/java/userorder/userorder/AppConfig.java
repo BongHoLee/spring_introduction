@@ -11,7 +11,7 @@ import userorder.userorder.member.MemberService;
 import userorder.userorder.member.MemberServiceImpl;
 import userorder.userorder.member.MemoryMemberRepository;
 
-//@Configuration
+@Configuration
 public class AppConfig {
 
     @Bean

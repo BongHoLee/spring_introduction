@@ -1,10 +1,12 @@
 package userorder.userorder.discount;
 
 import org.springframework.stereotype.Component;
+import userorder.userorder.annotation.MainDiscountPolicy;
 import userorder.userorder.member.Grade;
 import userorder.userorder.member.Member;
 
 @Component
+@MainDiscountPolicy
 public class RateDiscountPolicy implements DiscountPolicy {
     private int discountPercent = 10;
 
