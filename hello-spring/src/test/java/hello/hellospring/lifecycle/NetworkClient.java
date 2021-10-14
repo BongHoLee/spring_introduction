@@ -1,6 +1,9 @@
 package hello.hellospring.lifecycle;
 
-public class NetworkClient {
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+
+public class NetworkClient implements InitializingBean, DisposableBean {
     private String url;
 
     public NetworkClient() {
@@ -27,4 +30,17 @@ public class NetworkClient {
         System.out.println("close " + url);
     }
 
+    // 의존관계 주입이 끝나면 호출이 된다.(의존관계가 반드시 객체일 필요는 없고 url과 같은 '상태값'일 수 있지)
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("NetworkClient.afterPropertiesSet");
+        connect();
+        call("초기화 연결 메시지");
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("NetworkClient.destroy");
+        disConnect();
+    }
 }
