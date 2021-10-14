@@ -6,7 +6,6 @@ import userorder.userorder.member.Grade;
 import userorder.userorder.member.Member;
 
 @Component
-@MainDiscountPolicy
 public class RateDiscountPolicy implements DiscountPolicy {
     private int discountPercent = 10;
 
