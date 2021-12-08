@@ -1,4 +1,4 @@
-package hello.servlet.web.frontcontroller.v2;
+package hello.servlet.web.frontcontroller.v2_view;
 
 import hello.servlet.web.frontcontroller.MyView;
 
