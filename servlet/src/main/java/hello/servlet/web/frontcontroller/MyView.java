@@ -14,15 +14,14 @@ public class MyView {
         this.viewPath = viewPath;
     }
 
-    public void render(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
-        dispatcher.forward(request, response);
-    }
-
     public void render(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         model.forEach((key, value) -> request.setAttribute(key, value));
 
         render(request, response);
     }
 
+    private void render(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
+        dispatcher.forward(request, response);
+    }
 }

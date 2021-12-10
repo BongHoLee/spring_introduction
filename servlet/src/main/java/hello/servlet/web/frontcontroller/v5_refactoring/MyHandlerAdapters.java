@@ -1,6 +1,11 @@
 package hello.servlet.web.frontcontroller.v5_refactoring;
 
 import hello.servlet.web.frontcontroller.ModelView;
+import hello.servlet.web.frontcontroller.v4.ControllerV4;
+import hello.servlet.web.frontcontroller.v5_refactoring.adapter.ControllerV3HandlerAdapter;
+import hello.servlet.web.frontcontroller.v5_refactoring.adapter.ControllerV4HandlerAdapter;
+import hello.servlet.web.frontcontroller.v5_refactoring.handlermapping.ControllerV3HandlerMapping;
+import hello.servlet.web.frontcontroller.v5_refactoring.handlermapping.ControllerV4HandlerMapping;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,18 +27,21 @@ public class MyHandlerAdapters {
         initMappings();
     }
 
-    private void initAdapters() {
-
-    }
-
     private void initMappings() {
-
+        mappings.add(new ControllerV3HandlerMapping());
+        mappings.add(new ControllerV4HandlerMapping());
     }
+
+    private void initAdapters() {
+        adapters.add(new ControllerV3HandlerAdapter());
+        adapters.add(new ControllerV4HandlerAdapter());
+    }
+
 
     // 두 가지 작업처럼 보이는 것들의 추상화 수준이 동등하다고 판단.
     // 그리고 문맥이 동일하여 한 가지 책임을 수행한다고 판단.
     public ModelView adapt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 요청을 처리할 핸들러 매핑
+        // 요청을 처리할 핸들러 매핑(핸들러 찾기)
         Object handler = clientRequestMappingToHandler(request);
 
         // 핸들러와 협력할 어댑터를 찾아 처리 메시지 전송
