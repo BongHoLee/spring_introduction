@@ -2,7 +2,6 @@ package hello.servlet.web.frontcontroller.v5.adapter;
 
 import hello.servlet.web.frontcontroller.ModelView;
 import hello.servlet.web.frontcontroller.v3_viewandmodel.ControllerV3;
-import hello.servlet.web.frontcontroller.v4.ControllerV4;
 import hello.servlet.web.frontcontroller.v5.MyHandlerAdapter;
 
 import javax.servlet.ServletException;
@@ -30,8 +29,11 @@ public class ControllerV3HandlerAdapter implements MyHandlerAdapter {
 
     private Map<String, String> createParamMap(HttpServletRequest request) {
         Map<String, String> paramMap = new HashMap<>();
-        request.getParameterNames().asIterator()
-                .forEachRemaining(paramName -> paramMap.put(paramName, request.getParameter(paramName)));
+
+        while (request.getParameterNames().hasMoreElements()) {
+            String paramName = request.getParameterNames().nextElement();
+            paramMap.put(paramName, request.getParameter(paramName));
+        }
 
         return paramMap;
     }
