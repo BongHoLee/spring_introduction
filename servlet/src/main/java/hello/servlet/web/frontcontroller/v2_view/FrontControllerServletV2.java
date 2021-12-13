@@ -42,6 +42,7 @@ public class FrontControllerServletV2 extends HttpServlet {
         // 요청에 해당하는 컨트롤러에 메시지를 전송하고 MyView를 반환받는다.
         MyView myView = controller.process(request, response);
 
+
         myView.render(request, response);
     }
 }

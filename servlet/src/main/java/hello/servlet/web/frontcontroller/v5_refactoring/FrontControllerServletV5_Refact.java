@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "frontControllerServletV5", urlPatterns = "/front-controller/v5/*")
-public class FrontControllerServletV5  extends HttpServlet {
+@WebServlet(name = "frontControllerServletV5Refact", urlPatterns = "/front-controller/v5/refact/*")
+public class FrontControllerServletV5_Refact extends HttpServlet {
 
     private final MyHandlerAdapters adapters = new MyHandlerAdapters();
 
