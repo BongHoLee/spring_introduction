@@ -22,4 +22,17 @@ public class LogTestController {
 
         return "ok";
     }
+
+
+    public String logTest2() {
+        String name = "Spring";
+
+        log.trace("trace log = {}", name);
+        log.info("info log = {}", name);
+        log.debug("debug log = {}", name);
+        log.warn("warn log = {}", name);
+        log.error("error log = {}", name);
+
+        return "ok";
+    }
 }

@@ -41,7 +41,7 @@ public class ResponseBodyController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/response-body-json-v1")
+    @GetMapping("/response-body-json-v2")
     @ResponseBody
     public HelloData responseBodyJsonV2() {
         HelloData helloData = new HelloData();
